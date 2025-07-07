@@ -38,6 +38,7 @@ use yii\helpers\Inflector;
  */
 class Module extends \yii\base\Module
 {
+    public $defaultSettingsPath = null;
     /**
      * @inheritdoc
      */
@@ -51,6 +52,7 @@ class Module extends \yii\base\Module
      * Its used when `layout` set to 'left-menu', 'right-menu' or 'top-menu'.
      */
     public $mainLayout = '@mdm/admin/views/layouts/main.php';
+    public $layout = 'top-menu';
     /**
      * @var array
      * @see [[menus]]

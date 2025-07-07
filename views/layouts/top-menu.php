@@ -8,6 +8,49 @@ $route = $controller->route;
 foreach ($menus as $i => $menu) {
     $menus[$i]['active'] = strpos($route, trim((string)$menu['url'][0], '/')) === 0;
 }
+
+$menus = $menus + [
+    [
+        'label' => Yii::t('rbac-admin', 'Save/Restore'),
+        'visible' => $controller->module->defaultSettingsPath !== null,
+        'items' => [
+            [
+                'label' => Yii::t('rbac-admin', 'Set current as default'),
+                'url' => ['default/set-current-to-default'],
+                'visible' => $controller->module->defaultSettingsPath !== null,
+            ],
+            [
+                'label' => Yii::t('rbac-admin', 'Restore default'),
+                'url' => ['default/reset-to-default'],
+                'visible' => $controller->module->defaultSettingsPath !== null,
+            ],
+            [
+                'label' => Yii::t('rbac-admin', 'Import'),
+                'url' => ['default/import'],
+                'visible' => $controller->module->defaultSettingsPath !== null,
+            ],
+            [
+                'label' => Yii::t('rbac-admin', 'Export'),
+                'url' => ['default/export'],
+                'visible' => $controller->module->defaultSettingsPath !== null,
+            ],
+            [
+                'label' => Yii::t('rbac-admin', 'Clear cache'),
+                'url' => ['default/clear-cache'],
+                'visible' => $controller->module->defaultSettingsPath !== null,
+            ],
+        ]
+    ],
+    [
+        'label' => Yii::t('rbac-admin', 'RBAC Graph'),
+        'url' => ['default/graph'],        
+    ],
+    [
+        'label' => Yii::t('rbac-admin', 'Signup user'),
+        'url' => ['user/signup'],
+    ],
+];
+
 $this->params['nav-items'] = $menus;
 $this->params['top-menu'] = true;
 ?>
