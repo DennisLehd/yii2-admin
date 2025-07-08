@@ -49,6 +49,11 @@ $menus = $menus + [
         'label' => Yii::t('rbac-admin', 'Signup user'),
         'url' => ['user/signup'],
     ],
+    [
+        'label' => Yii::t('rbac-admin', 'Switch Back'),
+        'url' => ['default/switch-user-back'],
+        'visible' => \mdm\admin\controllers\SwitchUserAction::isSwitched(),
+    ],
 ];
 
 $this->params['nav-items'] = $menus;

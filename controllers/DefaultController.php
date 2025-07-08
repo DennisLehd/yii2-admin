@@ -16,6 +16,18 @@ use yii\web\UploadedFile;
 class DefaultController extends \yii\web\Controller
 {
 
+    public function actions()
+    {
+        return [
+            'switch-user' => [
+                'class' => 'mdm\admin\controllers\SwitchUserAction',
+            ],
+            'switch-user-back' => [
+                'class' => 'mdm\admin\controllers\SwitchUserBackAction',
+            ],
+        ];
+    }
+
     /**
      * Action index
      */
@@ -131,4 +143,11 @@ class DefaultController extends \yii\web\Controller
         return $this->redirect(Yii::$app->request->referrer ?: [$module->defaultRoute]);
     }
 
+
+    public function actionClearCache()
+    {
+        Yii::$app->authManager->flush();
+        Yii::$app->session->setFlash('success', Yii::t('rbac-admin', 'RBAC cache cleared successfully.'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 }

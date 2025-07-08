@@ -22,7 +22,16 @@ if (!empty($extraColumns)) {
 }
 $columns[] = [
     'class' => 'yii\grid\ActionColumn',
-    'template' => '{view}'
+    'template' => '{view} {switch}',
+    'buttons' => [
+        'switch' => function ($url, $model) {
+            return Html::a('&#10160;', ['default/switch-user', 'id'=>$model->id], [
+                'title' => Yii::t('rbac-admin', 'Switch User'),
+                'style' => 'color: #337ab7; text-decoration: none;',
+                'data-pjax' => '0',
+            ]);
+        },
+    ],
 ];
 ?>
 <div class="assignment-index">
